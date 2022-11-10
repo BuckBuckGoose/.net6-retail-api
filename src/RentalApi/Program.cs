@@ -1,48 +1,54 @@
 using RentalApi;
 using Retail.Domain;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
-var env = builder.Environment.EnvironmentName;
+    var env = builder.Environment.EnvironmentName;
 
-builder.Configuration.AddJsonFile("appsettings.json", false, true);
-builder.Configuration.AddJsonFile($"appsettings.{env}.json", true, true);
-builder.Configuration.AddEnvironmentVariables();
-//builder.Configuration
-//.AddJsonFile("appsettings.json")
-//.AddJsonFile("appsettings.Development.json") // Todo: environment variable replacement
-//.AddEnvironmentVariables();
+    builder.Configuration.AddJsonFile("appsettings.json", false, true);
+    builder.Configuration.AddJsonFile($"appsettings.{env}.json", true, true);
+    builder.Configuration.AddEnvironmentVariables();
+    //builder.Configuration
+    //.AddJsonFile("appsettings.json")
+    //.AddJsonFile("appsettings.Development.json") // Todo: environment variable replacement
+    //.AddEnvironmentVariables();
 
-//Buid config here
-var cfg = builder.Configuration.GetSection("apiConfig").Get<ApiConfig>();
-builder.Services.AddSingleton<IApiConfig>(cfg);
+    //Buid config here
+    var cfg = builder.Configuration.GetSection("apiConfig").Get<ApiConfig>();
+    builder.Services.AddSingleton<IApiConfig>(cfg);
 
-//Logging
+    //Logging
+    var logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.FromLogContext()
+        .CreateLogger();
+    builder.Logging.ClearProviders();
+    builder.Logging.AddSerilog(logger);
 
 
+    builder.Services.AddControllers();
+    // Add services to the container.
+    builder.Services.AddTransient<IService, Service>();
 
-builder.Services.AddControllers();
-// Add services to the container.
-builder.Services.AddTransient<IService, Service>();
+    //Default .NET services
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
-//Default .NET services
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    var app = builder.Build();
 
-var app = builder.Build();
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    app.UseHttpsRedirection();
 
-app.UseHttpsRedirection();
+    app.UseAuthorization();
 
-app.UseAuthorization();
+    app.MapControllers();
 
-app.MapControllers();
-
-app.Run();
+    app.Run();

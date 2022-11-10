@@ -14,11 +14,13 @@ namespace RentalApi.Controllers
 
         private readonly IApiConfig _apiConfig;
         private readonly IService _service;
+        private readonly ILogger _logger;
 
-        public WeatherForecastController(IApiConfig apiConfig, IService service)
+        public WeatherForecastController(IApiConfig apiConfig, IService service, ILogger logger)
         {
             _apiConfig = apiConfig;
             _service = service;
+            _logger = logger;
         }
 
         //private readonly ILogger<WeatherForecastController> _logger;
@@ -53,6 +55,7 @@ namespace RentalApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         public string GetConfigName()
         {
+            _logger.LogInformation("Getting Config Name");
             return _apiConfig.Name;
         }
 
@@ -61,6 +64,7 @@ namespace RentalApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         public string GetConfigConnectionString()
         {
+            _logger.LogInformation("Getting Connection String");
             return _apiConfig.ConnectionString;
         }
 
@@ -69,6 +73,7 @@ namespace RentalApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         public bool DoWork([FromQuery] int number)
         {
+            _logger.LogInformation("Doing Work");
             return _service.DoWork(number);
         }
     }
