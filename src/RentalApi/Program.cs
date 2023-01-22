@@ -1,5 +1,6 @@
 using RentalApi;
 using Retail.Domain;
+using Retail.Services;
 using Serilog;
 
     var builder = WebApplication.CreateBuilder(args);
@@ -28,8 +29,11 @@ using Serilog;
 
 
     builder.Services.AddControllers();
-    // Add services to the container.
-    builder.Services.AddTransient<IService, Service>();
+// Add services to the container.
+    builder.Services.AddScoped<IDomainService, DomainService>();
+    builder.Services.AddScoped<IInventoryService, InventoryService>();
+    builder.Services.AddScoped<IOrderService, OrderService>();
+    builder.Services.AddScoped<IPosService, PosService>();
 
     //Default .NET services
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

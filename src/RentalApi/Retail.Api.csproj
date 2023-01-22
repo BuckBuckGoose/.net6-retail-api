@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Retail.Domain\Retail.Domain.csproj" />
+    <ProjectReference Include="..\Retail.Services\Retail.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
