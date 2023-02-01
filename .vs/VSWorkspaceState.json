@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Retail.Domain"
   ],
-  "SelectedNode": "\\Rental.sln",
+  "SelectedNode": "\\src\\Retail.Domain\\IDomainService.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Retail.Domain;
+using Retail.Services.ProductService;
 
 namespace RentalApi.Controllers
 {
@@ -13,13 +14,13 @@ namespace RentalApi.Controllers
         };
 
         private readonly IApiConfig _apiConfig;
-        private readonly IDomainService _service;
+        private readonly IProductService _productService;
         private readonly ILogger _logger;
 
-        public RetailController(IApiConfig apiConfig, IDomainService service, ILogger logger)
+        public RetailController(IApiConfig apiConfig, IProductService productService, ILogger logger)
         {
             _apiConfig = apiConfig;
-            _service = service;
+            _productService = productService;
             _logger = logger;
         }
 
@@ -68,22 +69,22 @@ namespace RentalApi.Controllers
             return _apiConfig.ConnectionString;
         }
 
-        [HttpGet]
-        [Route("DoWork")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public bool DoWork([FromQuery] int number)
-        {
-            _logger.LogInformation("Doing Work");
-            return _service.DoWork(number);
-        }
+        //[HttpGet]
+        //[Route("DoWork")]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        //public bool DoWork([FromQuery] int number)
+        //{
+        //    _logger.LogInformation("Doing Work");
+        //    return _service.DoWork(number);
+        //}
 
-        [HttpPost]
-        [Route("CheckCount")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
-        public int CheckCount(int id)
-        {
-            _logger.LogInformation("Checking Count");
-            _service.CreateOrder(id[] ids);
-        }
+        //[HttpPost]
+        //[Route("CheckCount")]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        //public int CheckCount(int id)
+        //{
+        //    _logger.LogInformation("Checking Count");
+        //    _service.CreateOrder(id[] ids);
+        //}
     }
 }
