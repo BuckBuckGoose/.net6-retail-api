@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.Api.Test", "Rental.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.Domain.Tests", "Rental.Domain.Tests\Retail.Domain.Tests.csproj", "{C617BE88-C65A-40A8-AC05-A501EE6BE1E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.Services", "Retail.Services\Retail.Services.csproj", "{36313C34-5C5C-4847-9F82-7375E09FB310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.Services", "Retail.Services\Retail.Services.csproj", "{36313C34-5C5C-4847-9F82-7375E09FB310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.Repository", "Retail.Repository\Retail.Repository.csproj", "{A21CF131-2727-45BF-BA47-E050095AE756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.Repository", "Retail.Repository\Retail.Repository.csproj", "{A21CF131-2727-45BF-BA47-E050095AE756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.DTO", "Retail.DTO\Retail.DTO.csproj", "{D58E8800-238E-4179-AEEA-543A4D61C47E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A21CF131-2727-45BF-BA47-E050095AE756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21CF131-2727-45BF-BA47-E050095AE756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21CF131-2727-45BF-BA47-E050095AE756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D58E8800-238E-4179-AEEA-543A4D61C47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58E8800-238E-4179-AEEA-543A4D61C47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58E8800-238E-4179-AEEA-543A4D61C47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58E8800-238E-4179-AEEA-543A4D61C47E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

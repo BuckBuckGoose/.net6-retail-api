@@ -17,7 +17,7 @@ namespace RentalApi.Controllers
         private readonly IProductService _productService;
         private readonly ILogger _logger;
 
-        public RetailController(IApiConfig apiConfig, IProductService productService, ILogger logger)
+        public RetailController(IApiConfig apiConfig, IProductService productService, ILogger<RetailController> logger)
         {
             _apiConfig = apiConfig;
             _productService = productService;

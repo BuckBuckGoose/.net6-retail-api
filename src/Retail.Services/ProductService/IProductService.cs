@@ -3,11 +3,11 @@ namespace Retail.Services.ProductService
 {
     public interface IProductService
     {
-        Task<Product> CreateProduct(Product product);
-        Task<Product> GetById(int productId);
-        Task<IEnumerable<Product>> GetAllAsync();
-        Task UpdateProduct(Product product);
-        Task<bool> ToggleForSale(Product product);
+        Task<IEnumerable<Product>> GetProductsAsync() ;
+        Task<Product?> GetProductAsync(int productId);
+        Task AddProductAsync(Product product);
+        Task UpdateProductAsync(Product product);
+        Task DeleteProduct(int productId);
 
     }
 }

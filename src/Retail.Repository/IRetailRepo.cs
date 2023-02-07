@@ -1,8 +1,12 @@
-﻿namespace Retail.Repository
+﻿using Retail.Domain;
+namespace Retail.Repository
 {
     public interface IRetailRepo
     {
-        Task<bool> CheckStock(int id);
-        Task<int> AddItem(int id, string name, string description);
+        Task<IEnumerable<Product>> GetProductsAsync();
+        Task<Product?> GetProductAsync(int? productId);
+        Task AddProduct(Product product);
+        Task UpdateProduct(Product product);
+        Task DeleteProduct(Product product);
     }
 }

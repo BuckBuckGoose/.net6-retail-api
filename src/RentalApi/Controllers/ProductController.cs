@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Retail.Domain;
+using Retail.Domain.Exceptions;
+using Retail.DTO.Output;
+using Retail.DTO.Input;
 using Retail.Services.ProductService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,40 +15,66 @@ namespace Retail.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly ILogger _logger;
+        private readonly IMapper _mapper;
+
+        public ProductController(IProductService productService, ILogger<ProductController> logger, IMapper mapper)
         {
             _productService = productService;
+            _logger = logger;
+            _mapper = mapper;
         }
+
         // GET: api/<ProductController>
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetAllAsync()
+        [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllAsync()
         {
-            var response =  await _productService.GetAllAsync();
-            return response;
+            var response =  await _productService.GetProductsAsync();
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            var mappedResponse = _mapper.Map<IEnumerable<DisplayProductDto>>(response);
+            return Ok(mappedResponse);
         }
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public async Task<Product> Get(int id)
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
         {
-            return await _productService.GetById(id);
+            var result = await _productService.GetProductAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            var mappedResult = _mapper.Map<DisplayProductDto>(result);
+            return Ok(mappedResult);
             
         }
 
         // POST api/<ProductController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public void Post(CreateProductDto createdProductDto)
         {
+            
+            //_productService.AddProductAsync(product);
         }
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public void Delete(int id)
         {
         }

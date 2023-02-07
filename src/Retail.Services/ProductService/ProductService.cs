@@ -1,4 +1,6 @@
 ﻿using Retail.Domain;
+using Retail.Domain.Exceptions;
+using Retail.Repository;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,34 +12,48 @@ namespace Retail.Services.ProductService
 {
     public class ProductService : IProductService
     {
-        public Task<Product> CreateProduct(Product product)
+        private readonly IRetailRepo _retailRepo;
+        public ProductService(IRetailRepo retailRepo) 
         {
-            throw new NotImplementedException();
+            _retailRepo = retailRepo;
+        }
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            var products = await _retailRepo.GetProductsAsync();
+            var returnedProducts = products.Where(x => x.ForSale == true).ToList();
+            return await Task.FromResult<IEnumerable<Product>>(returnedProducts);
+        }
+        public async Task<Product?> GetProductAsync(int productId)
+        {
+            //return await Task.FromResult(new Product("iPhone 14 Pro", "The latest iPhone", 10, 1000, true, 1));
+            var result = await _retailRepo.GetProductAsync(productId);
+            return result;
         }
 
-        public async Task<IEnumerable<Product>> GetAllAsync()
+        public async Task AddProductAsync(Product product)
         {
-            List<Product> products = new List<Product>()
+            await _retailRepo.AddProduct(product);
+        }
+
+        public async Task UpdateProductAsync(Product product)
+        {
+            if (product.Id == null)
             {
-                    new Product("iPhone 14 Pro", "The latest iPhone", 10, 1000, true, 1),
-                    new Product("iPhone 14", "The latest iPhone", 10, 900, true, 2)
-            };
-            return await Task.FromResult<IEnumerable<Product>>(products);
+                throw new ArgumentNullException("Product Id is null");
+            }
+            var result = await _retailRepo.GetProductAsync(product.Id);
+            await _retailRepo.UpdateProduct(product);
         }
 
-        public Task<Product> GetById(int productId)
+        public async Task DeleteProduct(int productId)
         {
-            return Task.FromResult(new Product("iPhone 14 Pro", "The latest iPhone", 10, 1000, true, 1));
+            var result = await _retailRepo.GetProductAsync(productId);
+            if (result == null)
+            {
+                throw new ProductNotFoundException(productId);
+            }
+            await _retailRepo.DeleteProduct(result);
         }
 
-        public Task<bool> ToggleForSale(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
