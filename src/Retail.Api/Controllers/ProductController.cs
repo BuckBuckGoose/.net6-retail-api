@@ -59,24 +59,27 @@ namespace Retail.Api.Controllers
         // POST api/<ProductController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public void Post(CreateProductDto createdProductDto)
+        public async Task Post(CreateProductDto createdProductDto)
         {
-            
+
             //_productService.AddProductAsync(product);
+            await Task.Delay(1);
         }
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public void Put(int id, [FromBody] string value)
+        public async Task Put(int id, [FromBody] string value)
         {
+            await Task.Delay(1);
         }
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            await Task.Delay(1);
         }
     }
 }

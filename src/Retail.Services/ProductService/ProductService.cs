@@ -17,12 +17,14 @@ namespace Retail.Services.ProductService
         {
             _retailRepo = retailRepo;
         }
+
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
             var products = await _retailRepo.GetProductsAsync();
             var returnedProducts = products.Where(x => x.ForSale == true).ToList();
             return await Task.FromResult<IEnumerable<Product>>(returnedProducts);
         }
+
         public async Task<Product?> GetProductAsync(int productId)
         {
             //return await Task.FromResult(new Product("iPhone 14 Pro", "The latest iPhone", 10, 1000, true, 1));
