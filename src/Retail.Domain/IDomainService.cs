@@ -1,7 +1,8 @@
 ﻿namespace Retail.Domain
 {
-    public interface IService
+    public interface IDomain
     {
         bool DoWork(int number);
+        Task<int> CreateOrder();
     }
 }

@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net" modified="2023-02-01T03:31:24.839Z" agent="5.0 (Windows)" version="20.8.5" etag="qw6DDe5xL11sQBjRm0lv" type="github" pages="2">
+  <diagram id="F21_bTeCIyyMiJkU80xe" name="Overview">
+    <mxGraphModel dx="1434" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-1" value="&lt;div&gt;Presentation&lt;/div&gt;&lt;div&gt;Layer&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="40" width="120" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-3" value="Services" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="120" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-5" value="Domain" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="40" width="120" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-7" value="&lt;div&gt;Data&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="40" width="120" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-9" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="yWkFV3-Xhv7lQXtSpORZ-1" target="yWkFV3-Xhv7lQXtSpORZ-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="190" as="sourcePoint" />
+            <mxPoint x="350" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-10" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="yWkFV3-Xhv7lQXtSpORZ-3" target="yWkFV3-Xhv7lQXtSpORZ-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="289.5" as="sourcePoint" />
+            <mxPoint x="510" y="289.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yWkFV3-Xhv7lQXtSpORZ-11" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="yWkFV3-Xhv7lQXtSpORZ-7" target="yWkFV3-Xhv7lQXtSpORZ-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="310" as="sourcePoint" />
+            <mxPoint x="600" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="20dY6dSP_Ar3jsQPK5mV" name="Product V1">
+    <mxGraphModel dx="1434" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9H83gsAB3xLbxMGdeu6T-4" value="&lt;h1 align=&quot;center&quot;&gt;Product V1&lt;/h1&gt;&lt;div align=&quot;center&quot;&gt;Keeping track of Products&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="320" y="10" width="570" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9H83gsAB3xLbxMGdeu6T-7" value="&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;OPERATIONS&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;ul&gt;&lt;li&gt;Create&lt;/li&gt;&lt;li&gt;Read(single)&lt;/li&gt;&lt;li&gt;Read(all)/List&lt;/li&gt;&lt;li&gt;Update&lt;/li&gt;&lt;li&gt;Delete&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="9H83gsAB3xLbxMGdeu6T-10" value="&lt;div&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Requirements:&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;Create a new product&lt;/li&gt;&lt;li&gt;Read a single product by Id&lt;/li&gt;&lt;li&gt;List all product names and Ids&lt;br&gt;&lt;/li&gt;&lt;li&gt;Update a product by Id&lt;/li&gt;&lt;li&gt;Toggle ForSale&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="80" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="9H83gsAB3xLbxMGdeu6T-13" value="&lt;div style=&quot;font-size: 16px;&quot; align=&quot;left&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Properties&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot; align=&quot;left&quot;&gt;&lt;ul&gt;&lt;li&gt;ID&lt;/li&gt;&lt;li&gt;Name&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;Stock&lt;/li&gt;&lt;li&gt;Price&lt;/li&gt;&lt;li&gt;ForSale&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="260" height="185" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
