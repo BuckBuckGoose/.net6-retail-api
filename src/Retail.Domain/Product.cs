@@ -16,7 +16,7 @@ namespace Retail.Domain
         public decimal Price { get; set; }
         public bool ForSale { get; set; }
 
-        public Product(string name, string description, int stock, decimal price, bool forSale, int? id = null)
+        public Product(string name, string? description, int stock, decimal price, bool forSale, int? id = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Description = description ?? string.Empty;

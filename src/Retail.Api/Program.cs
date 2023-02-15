@@ -4,7 +4,6 @@ using Retail.Domain;
 using Retail.DTO.MapperProfiles;
 using Retail.Repository;
 using Retail.Services;
-using Retail.Services.ProductService;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,6 +45,7 @@ builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 // Add Database
 //builder.Services.AddDbContext<RetailDbContext>(options => options.UseInMemoryDatabase("TestDB"));
+builder.Services.AddDbContext<RetailDbContext>(opt => opt.UseSqlite(cfg.ConnectionString));
 
 //Default .NET services
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

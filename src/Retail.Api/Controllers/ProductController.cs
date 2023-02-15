@@ -4,7 +4,7 @@ using Retail.Domain;
 using Retail.Domain.Exceptions;
 using Retail.DTO.Output;
 using Retail.DTO.Input;
-using Retail.Services.ProductService;
+using Retail.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -59,27 +59,32 @@ namespace Retail.Api.Controllers
         // POST api/<ProductController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task Post(CreateProductDto createdProductDto)
+        public async Task<IActionResult> Post(CreateProductDto createdProductDto)
         {
-
-            //_productService.AddProductAsync(product);
-            await Task.Delay(1);
+            var newProduct = _mapper.Map<Product>(createdProductDto);
+            await _productService.AddProductAsync(newProduct);
+            // Todo: Return the created object
+            return Ok();
         }
 
-        // PUT api/<ProductController>/5
-        [HttpPut("{id}")]
+        // Todo: Use URL for Id instead of body
+        // PUT api/<ProductController>
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(UpdateProductDto updateProductDto)
         {
-            await Task.Delay(1);
+            var product = _mapper.Map<Product>(updateProductDto);
+            await _productService.UpdateProductAsync(product);
+            return Ok(product);
         }
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await Task.Delay(1);
+            await _productService.DeleteProduct(id);
+            return Ok();
         }
     }
 }

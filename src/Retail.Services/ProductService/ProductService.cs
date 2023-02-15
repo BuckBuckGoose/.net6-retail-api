@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Retail.Services.ProductService
+namespace Retail.Services
 {
     public class ProductService : IProductService
     {
@@ -41,9 +41,8 @@ namespace Retail.Services.ProductService
         {
             if (product.Id == null)
             {
-                throw new ArgumentNullException("Product Id is null");
+                throw new ArgumentNullException("Id","Product Id is null");
             }
-            var result = await _retailRepo.GetProductAsync(product.Id);
             await _retailRepo.UpdateProduct(product);
         }
 

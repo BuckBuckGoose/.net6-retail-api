@@ -50,6 +50,25 @@ namespace Retail.DTO.MapperProfiles
                     opt => opt.MapFrom(src => src.Price))
                 ;
 
+            CreateMap<UpdateProductDto, Product>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(src => src.Id))
+                .ForMember(
+                    dest => dest.Name,
+                    opt => opt.MapFrom(src => src.Name))
+                .ForMember(
+                    dest => dest.Description,
+                    opt => opt.MapFrom(src => src.Description))
+                .ForMember(
+                    dest => dest.Stock,
+                    opt => opt.MapFrom(src => src.Stock))
+                .ForMember(
+                    dest => dest.Price,
+                    opt => opt.MapFrom(src => src.Price))
+                .ForMember(
+                    dest => dest.ForSale,
+                    opt => opt.MapFrom(src => src.ForSale));
 
 
 

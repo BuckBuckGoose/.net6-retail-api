@@ -1,5 +1,5 @@
 ﻿using Retail.Domain;
-namespace Retail.Services.ProductService
+namespace Retail.Services
 {
     public interface IProductService
     {

@@ -1,6 +1,3 @@
-using NUnit;
-using NUnit.Framework;
-using Retail.Domain;
 using Retail.Domain.Exceptions;
 
 namespace Retail.Domain.Tests
@@ -18,14 +15,9 @@ namespace Retail.Domain.Tests
         [Test]
         public void AddStockPass()
         {
-            //Arrange
-            
-
-            //Act
             product.AddStock(10);
             product.AddStock(0);
 
-            //Assert
             Assert.That(product.Stock, Is.EqualTo(20));
 
         }
@@ -33,7 +25,6 @@ namespace Retail.Domain.Tests
         [Test]
         public void AddStockFail_NegativeValue()
         {
-
             Assert.Throws<NegativeValueException>(() => product.AddStock(-10));
 
         }

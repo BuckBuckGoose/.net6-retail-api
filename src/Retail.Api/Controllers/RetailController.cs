@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Retail.Domain;
-using Retail.Services.ProductService;
+using Retail.Services;
 
 namespace RentalApi.Controllers
 {
