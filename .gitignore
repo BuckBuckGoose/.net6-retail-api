@@ -364,4 +364,8 @@ FodyWeavers.xsd
 
 # sqlite db
 *.sqlite
+/src/Retail.Api/Application.db
+/src/Retail.Api/Application.db-shm
+/src/Retail.Api/Application.db-wal
+
 /.vs/VSWorkspaceState.json
