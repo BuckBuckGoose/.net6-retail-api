@@ -64,16 +64,23 @@ namespace Retail.Api.Controllers
             var newProduct = _mapper.Map<Product>(createdProductDto);
             await _productService.AddProductAsync(newProduct);
             // Todo: Return the created object
-            return Ok();
+            return CreatedAtAction("Get", new { newProduct.Id }, newProduct);
+            //return Ok();
         }
 
         // Todo: Use URL for Id instead of body
         // PUT api/<ProductController>
-        [HttpPut]
+        [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Put(UpdateProductDto updateProductDto)
+        public async Task<IActionResult> Patch(UpdateProductDto updateProductDto, [FromRoute]int id)
         {
-            var product = _mapper.Map<Product>(updateProductDto);
+            var entity = await _productService.GetProductAsync(id);
+            if (entity == null) 
+            {
+                return NotFound(id);
+            }
+
+            var product = _mapper.Map(updateProductDto, entity);
             await _productService.UpdateProductAsync(product);
             return Ok(product);
         }
