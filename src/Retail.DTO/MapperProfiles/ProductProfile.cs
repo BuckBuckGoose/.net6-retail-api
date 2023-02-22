@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Retail.Domain;
+using Retail.Domain.Models;
 using Retail.DTO.Input;
 using Retail.DTO.Output;
 using System;

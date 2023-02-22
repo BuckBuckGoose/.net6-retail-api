@@ -1,5 +1,5 @@
-﻿using Retail.Domain;
-using Retail.Domain.Exceptions;
+﻿using Retail.Domain.Exceptions;
+using Retail.Domain.Models;
 using Retail.Repository;
 using System;
 using System.Collections;
@@ -18,7 +18,7 @@ namespace Retail.Services
             _retailRepo = retailRepo;
         }
 
-        public async Task<IEnumerable<Product>> GetProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
             var products = await _retailRepo.GetProductsAsync();
             var returnedProducts = products.Where(x => x.ForSale == true).ToList();

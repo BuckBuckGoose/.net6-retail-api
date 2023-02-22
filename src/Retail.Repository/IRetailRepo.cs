@@ -1,4 +1,5 @@
-﻿using Retail.Domain;
+﻿using Retail.Domain.Models;
+
 namespace Retail.Repository
 {
     public interface IRetailRepo

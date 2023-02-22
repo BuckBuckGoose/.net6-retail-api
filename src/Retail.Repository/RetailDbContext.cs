@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Retail.Domain;
+using Retail.Domain.Models;
 
 namespace Retail.Repository
 {

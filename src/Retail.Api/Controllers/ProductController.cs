@@ -5,8 +5,8 @@ using Retail.Domain.Exceptions;
 using Retail.DTO.Output;
 using Retail.DTO.Input;
 using Retail.Services;
+using Retail.Domain.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Retail.Api.Controllers
 {
@@ -30,8 +30,8 @@ namespace Retail.Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllAsync()
         {
-            var response =  await _productService.GetProductsAsync();
-            if (response == null)
+            var response =  await _productService.GetAllProductsAsync();
+            if (response == null || response.Count() == 0)
             {
                 return NotFound();
             }
@@ -44,7 +44,7 @@ namespace Retail.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
             var result = await _productService.GetProductAsync(id);
             if (result == null)
@@ -59,21 +59,21 @@ namespace Retail.Api.Controllers
         // POST api/<ProductController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Post(CreateProductDto createdProductDto)
+        public async Task<IActionResult> Post([FromBody]CreateProductDto createdProductDto)
         {
             var newProduct = _mapper.Map<Product>(createdProductDto);
             await _productService.AddProductAsync(newProduct);
             // Todo: Return the created object
-            return Ok();
+            return CreatedAtAction(nameof(Get), new {id = newProduct.Id }, newProduct);
         }
 
-        // Todo: Use URL for Id instead of body
-        // PUT api/<ProductController>
-        [HttpPut]
+        // PUT api/<ProductController>/5
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Put(UpdateProductDto updateProductDto)
+        public async Task<IActionResult> Put([FromRoute]int id, [FromBody]UpdateProductDto updateProductDto)
         {
             var product = _mapper.Map<Product>(updateProductDto);
+            product.Id = id;
             await _productService.UpdateProductAsync(product);
             return Ok(product);
         }
@@ -81,7 +81,7 @@ namespace Retail.Api.Controllers
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute]int id)
         {
             await _productService.DeleteProduct(id);
             return Ok();

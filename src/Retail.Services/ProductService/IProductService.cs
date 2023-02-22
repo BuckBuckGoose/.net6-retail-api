@@ -1,9 +1,10 @@
-﻿using Retail.Domain;
+﻿using Retail.Domain.Models;
+
 namespace Retail.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<Product>> GetProductsAsync() ;
+        Task<IEnumerable<Product>> GetAllProductsAsync() ;
         Task<Product?> GetProductAsync(int productId);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);

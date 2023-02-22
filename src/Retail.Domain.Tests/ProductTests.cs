@@ -1,4 +1,5 @@
 using Retail.Domain.Exceptions;
+using Retail.Domain.Models;
 
 namespace Retail.Domain.Tests
 {
@@ -9,7 +10,15 @@ namespace Retail.Domain.Tests
         [SetUp]
         public void SetUp()
         {
-            product = new Product("Test", "Test desc.", 10, 10, true, 1);
+            product = new Product
+            {
+                Name = "Test",
+                Description = "Test desc.",
+                Price = 10,
+                Stock = 10,
+                ForSale = true,
+                Id = 1
+            };
         }
 
         [Test]
