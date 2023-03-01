@@ -23,7 +23,7 @@ namespace Retail.DTO.MapperProfiles
                     opt => opt.MapFrom(src => src.Description))
                 .ForMember(
                     dest => dest.Stock,
-                    opt => opt.MapFrom(src => src.Stock))
+                    opt => opt.MapFrom(src => src.Stock ?? 0))
                 .ForMember(
                     dest => dest.Price,
                     opt => opt.MapFrom(src => src.Price))
@@ -52,23 +52,17 @@ namespace Retail.DTO.MapperProfiles
 
             CreateMap<UpdateProductDto, Product>()
                 .ForMember(
-                    dest => dest.Id,
-                    opt => opt.MapFrom(src => src.Id))
-                .ForMember(
                     dest => dest.Name,
-                    opt => opt.MapFrom(src => src.Name))
+                    opt => opt.Condition(src => src.Name != null ))
                 .ForMember(
                     dest => dest.Description,
-                    opt => opt.MapFrom(src => src.Description))
-                .ForMember(
-                    dest => dest.Stock,
-                    opt => opt.MapFrom(src => src.Stock))
+                    opt => opt.Condition(src => src.Description != null))
                 .ForMember(
                     dest => dest.Price,
-                    opt => opt.MapFrom(src => src.Price))
+                    opt => opt.Condition(src => src.Price != null))
                 .ForMember(
                     dest => dest.ForSale,
-                    opt => opt.MapFrom(src => src.ForSale));
+                    opt => opt.Condition(src => src.ForSale != null));
 
 
 
